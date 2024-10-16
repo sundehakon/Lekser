@@ -69,6 +69,7 @@ pub fn toggle_status(filename: String, index: usize) {
 
     write_json_file(filename,&lekser);
 
+
     if lekser[index].status {
         println!("Lekse '{}' er nå merket som fullført.", lekser[index].navn);
     } else {
