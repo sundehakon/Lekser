@@ -56,3 +56,22 @@ pub fn remove_lekse_by_index(filename: String, index: usize) {
     lekser.remove(index);
     write_json_file(filename, &lekser);
 }
+
+pub fn toggle_status(filename: String, index: usize) {
+    let mut lekser: Vec<Lekse> = read_json_file(filename.clone());
+
+    if index >= lekser.len() {
+        println!("Ugyldig index.");
+        return;
+    }
+
+    lekser[index].status = !lekser[index].status;
+
+    write_json_file(filename,&lekser);
+
+    if lekser[index].status {
+        println!("Lekse '{}' er nå merket som fullført.", lekser[index].navn);
+    } else {
+        println!("Lekse '{}' er nå merket som ikke fullført.", lekser[index].navn);
+    }
+}
