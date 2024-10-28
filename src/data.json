@@ -2,5 +2,9 @@
   {
     "navn": "dksdf",
     "status": true
+  },
+  {
+    "navn": "Lage presentasjoner",
+    "status": false
   }
 ]
