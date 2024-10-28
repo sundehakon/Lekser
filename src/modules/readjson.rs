@@ -76,3 +76,19 @@ pub fn toggle_status(filename: String, index: usize) {
         println!("Lekse '{}' er nå merket som ikke fullført.", lekser[index].navn);
     }
 }
+
+pub fn change_lekse(filename: String, index: usize, new_name: String) { 
+    let mut lekser: Vec<Lekse> = read_json_file(filename.clone());
+
+    if index >= lekser.len() {
+        println!("Ugyldig index.");
+        return;
+    }
+    
+    lekser[index].navn = new_name;
+
+    write_json_file(filename, &lekser);
+
+    println!("Lekse at index {} is now renamed to '{}'.", index, lekser[index].navn);
+}
+

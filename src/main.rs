@@ -9,9 +9,10 @@ fn main() {
         println!("Vennligst velg et alternativ:");
         println!("1. Legg til ny lekse");
         println!("2. Alle lekser");
-        println!("3. Endre lekse status");
-        println!("4. Fjern lekse");
-        println!("5. Avslutt"); 
+        println!("3. Endre lekse");
+        println!("4. Endre lekse status");
+        println!("5. Fjern lekse");
+        println!("6. Avslutt"); 
 
         let mut valg = String::new();
         io::stdin().read_line(&mut valg).expect("Kunne ikke lese linje.");
@@ -27,7 +28,7 @@ fn main() {
             }
             "2" => {
                 let filename = "src/data.json".to_string();
-                let lekser: Vec<Lekse> = modules::readjson::read_json_file(filename);
+                let lekser: Vec<Lekse> = modules::readjson::read_json_file(filename.clone());
 
                 if lekser.is_empty() {
                     println!("Ingen lekser tilgjengelig.");
@@ -58,6 +59,38 @@ fn main() {
                         }
                     }
                 }
+                
+                println!("Skriv inn tall for lekse du vil endre:");
+                let mut index_input = String::new();
+                io::stdin().read_line(&mut index_input).expect("Kunne ikke lese linje.");
+                
+                if let Ok(index) = index_input.trim().parse::<usize>() {
+                    println!("Nåværende navn på lekse: {}", lekser[index - 1].navn);
+                    println!("Skriv inn nytt navn:");
+                    let mut new_lekse_input = String::new();
+                    io::stdin().read_line(&mut new_lekse_input).expect("Kunne ikke lese linje.");
+                    println!("{}", new_lekse_input);
+                    modules::readjson::change_lekse(filename, index - 1, new_lekse_input); 
+                } else {
+                    println!("Ugyldig input, vennligst skriv inn et tall.");
+                }
+            }
+            "4" => {
+                let filename = "src/data.json".to_string();
+                let lekser: Vec<Lekse> = modules::readjson::read_json_file(filename.clone());
+
+                if lekser.is_empty() {
+                    println!("Ingen lekser tilgjengelig.");
+                } else {
+                    println!("Dine lekser:");
+                    for (index, lekse) in lekser.iter().enumerate() {
+                        if lekse.status {
+                            println!("{}. {}", index + 1, lekse.navn.green());
+                        } else {
+                            println!("{}. {}", index + 1, lekse.navn.red());
+                        }
+                    }
+                }
 
                 println!("Skriv inn tall for lekse du vil endre status på:");
                 let mut index_input = String::new();
@@ -69,7 +102,7 @@ fn main() {
                     println!("Ugyldig input, vennligst skriv inn et tall.");
                 }
             }
-            "4" => {
+            "5" => {
                 let filename = "src/data.json".to_string();
                 let lekser: Vec<Lekse> = modules::readjson::read_json_file(filename.clone());
                 
@@ -101,7 +134,7 @@ fn main() {
 
                 modules::readjson::remove_lekse_by_index(filename, index);
             }
-            "5" => {
+            "6" => {
                 println!("Adjø!");
                 break;
             }
