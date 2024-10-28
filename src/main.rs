@@ -6,7 +6,7 @@ mod modules;
 fn main() {
     println!("Velkommen til lekser!");
     loop {
-        println!("Velg et alternativ:");
+        println!("Vennligst velg et alternativ:");
         println!("1. Legg til ny lekse");
         println!("2. Alle lekser");
         println!("3. Endre lekse");
