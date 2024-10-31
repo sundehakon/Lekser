@@ -89,6 +89,6 @@ pub fn change_lekse(filename: String, index: usize, new_name: String) {
 
     write_json_file(filename, &lekser);
 
-    println!("Lekse at index {} is now renamed to '{}'.", index, lekser[index].navn);
+    println!("Lekse is now renamed to '{}'.", lekser[index].navn);
 }
 

@@ -9,7 +9,7 @@ fn main() {
         println!("Vennligst velg et alternativ:");
         println!("1. Legg til ny lekse");
         println!("2. Alle lekser");
-        println!("3. Endre lekse");
+        println!("3. Rediger lekse");
         println!("4. Endre lekse status");
         println!("5. Fjern lekse");
         println!("6. Avslutt"); 
