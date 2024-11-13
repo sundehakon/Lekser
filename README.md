@@ -1,3 +1,3 @@
 # Lekser
 
-En enkel command line applikasjon for å organisere harer.
+En enkel command line applikasjon for å organisere lekser
